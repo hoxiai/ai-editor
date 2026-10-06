@@ -9,9 +9,8 @@
     min-height: 0;
   }
 
-  .ai-editor-content-wrap.ai-editor-content-focus {
-    box-shadow: inset 0 0 0 1px var(--ai-outline-color);
-  }
+  /* 焦点不再画第二层指示（内容区 inset 环已移除，外框也不随聚焦变色），
+     编辑器自始至终只有一层静态边框。 */
 
   .tiptap {
     @apply caret-black dark:caret-white outline-0 px-4 py-2 sm:px-20 sm:py-6;
