@@ -1,5 +1,8 @@
 .ai-editor {
   @apply rounded-[0.5rem] bg-background shadow outline outline-1 relative outline-border;
+  /* 宿主未定义 shadcn token（--border/--background）时兜底：outline-color 落回 currentColor 会画出醒目的深色外框 */
+  outline-color: hsl(var(--border, 220 13% 91%));
+  background-color: hsl(var(--background, 0 0% 100%));
   --ai-outline-color: theme('colors.blue.500');
 
   .ai-editor-content-wrap {
