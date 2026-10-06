@@ -3,8 +3,8 @@
 一个面向 Vue 3 的现代化 AI 富文本编辑器，基于 [tiptap](https://tiptap.dev) 与 [shadcn-vue](https://www.shadcn-vue.com/) 构建，强调“高可定制 + 组件化 + 扩展驱动”。
 
 [![MIT 许可证](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![](https://img.shields.io/npm/v/%40aihop%2Fai-editor.svg?label=version)](https://www.npmjs.com/package/@aihop/ai-editor)
-[![](https://img.shields.io/npm/dependency-version/%40aihop%2Fai-editor/peer/vue?color=vue)](https://www.npmjs.com/package/@aihop/ai-editor)
+[![](https://img.shields.io/npm/v/%40hoxiai%2Fai-editor.svg?label=version)](https://www.npmjs.com/package/@hoxiai/ai-editor)
+[![](https://img.shields.io/npm/dependency-version/%40hoxiai%2Fai-editor/peer/vue?color=vue)](https://www.npmjs.com/package/@hoxiai/ai-editor)
 
 [English](./README.md) | 中文
 
@@ -24,11 +24,11 @@
 ## 安装
 
 ```bash
-pnpm add @aihop/ai-editor
+pnpm add @hoxiai/ai-editor
 # 或
-npm i @aihop/ai-editor
+npm i @hoxiai/ai-editor
 # 或
-yarn add @aihop/ai-editor
+yarn add @hoxiai/ai-editor
 ```
 
 ## 快速开始
@@ -39,8 +39,8 @@ yarn add @aihop/ai-editor
 // main.ts
 import { createApp } from 'vue'
 import App from './App.vue'
-import AiEditor from '@aihop/ai-editor'
-import '@aihop/ai-editor/style.css'
+import AiEditor from '@hoxiai/ai-editor'
+import '@hoxiai/ai-editor/style.css'
 
 createApp(App).use(AiEditor).mount('#app')
 ```
@@ -48,7 +48,7 @@ createApp(App).use(AiEditor).mount('#app')
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { BaseKit } from '@aihop/ai-editor'
+import { BaseKit } from '@hoxiai/ai-editor'
 
 const content = ref('')
 const extensions = [
@@ -70,8 +70,8 @@ const extensions = [
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { AiEditor, BaseKit } from '@aihop/ai-editor'
-import '@aihop/ai-editor/style.css'
+import { AiEditor, BaseKit } from '@hoxiai/ai-editor'
+import '@hoxiai/ai-editor/style.css'
 
 const content = ref('')
 const extensions = [BaseKit.configure()]
@@ -87,7 +87,7 @@ const extensions = [BaseKit.configure()]
 AI 能力由 `AI` 扩展提供。你只需要提供一个 `completions()` 方法（可选：自定义快捷指令）。
 
 ```ts
-import { BaseKit, AI } from '@aihop/ai-editor'
+import { BaseKit, AI } from '@hoxiai/ai-editor'
 
 const extensions = [
   BaseKit.configure(),
@@ -171,7 +171,7 @@ const extensions = [
 ## 国际化
 
 ```ts
-import { locale } from '@aihop/ai-editor'
+import { locale } from '@hoxiai/ai-editor'
 
 locale.setLang('zhHans') // 'en' | 'zhHans'
 ```

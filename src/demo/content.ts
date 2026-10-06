@@ -76,7 +76,7 @@ export const DEMO_CONTENT = {
             {
               type: 'link',
               attrs: {
-                href: 'https://aihop.io/',
+                href: 'https://hoxi.ai/',
                 target: '_blank',
                 rel: 'noopener noreferrer nofollow',
                 class: 'link',
@@ -235,7 +235,7 @@ export const DEMO_CONTENT = {
       type: 'codeBlock',
       attrs: { language: 'bash' },
       content: [
-        { type: 'text', text: 'pnpm add @aihop/ai-editor\n// or\nor yarn add @aihop/ai-editor\n// or\nor npm i @aihop/ai-editor -S' },
+        { type: 'text', text: 'pnpm add @hoxiai/ai-editor\n// or\nor yarn add @hoxiai/ai-editor\n// or\nor npm i @hoxiai/ai-editor -S' },
       ],
     },
     {
@@ -249,7 +249,7 @@ export const DEMO_CONTENT = {
       content: [
         {
           type: 'text',
-          text: "import { createApp } from 'vue'\nimport App from './App.vue'\nimport AiEditor from '@aihop/ai-editor'\nimport '@aihop/ai-editor/style.css'\nconst app = createApp(App)\napp.use(AiEditor)\napp.mount('#app')",
+          text: "import { createApp } from 'vue'\nimport App from './App.vue'\nimport AiEditor from '@hoxiai/ai-editor'\nimport '@hoxiai/ai-editor/style.css'\nconst app = createApp(App)\napp.use(AiEditor)\napp.mount('#app')",
         },
       ],
     },
