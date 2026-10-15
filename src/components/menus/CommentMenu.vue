@@ -81,19 +81,19 @@ async function handleSubmit() {
     const tempCommentId = `comment-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
 
     // 获取 onCommentCreate 回调
-    const onCommentCreate = props.editor.extensionManager.extensions
-      .find(e => e.name === 'comment')?.options?.onCommentCreate
+    const onCommentCreate = props.editor.extensionManager.extensions.find(e => e.name === 'comment')?.options
+      ?.onCommentCreate
 
     // 调用回调，获取真实的评论ID
     let realCommentId: string | null = tempCommentId // 默认使用临时ID
-    
+
     if (typeof onCommentCreate === 'function') {
       const result = await onCommentCreate({
         commentId: tempCommentId,
         selectedText,
         annotationContent: content.value,
       })
-      
+
       // 如果回调返回了真实ID，则使用真实ID；如果返回null，表示创建失败
       if (result === null) {
         toast({
@@ -230,23 +230,12 @@ function onFormSubmit(e: Event) {
           <!-- 右侧按钮 -->
           <div class="absolute end-0 inset-y-0 flex items-center justify-center gap-2 px-2">
             <!-- 取消按钮 -->
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              class="h-[32px]"
-              @click="handleClose"
-            >
+            <Button type="button" variant="ghost" size="sm" class="h-[32px]" @click="handleClose">
               {{ t('editor.comment.cancel') }}
             </Button>
 
             <!-- 提交按钮 -->
-            <Button
-              type="submit"
-              :disabled="!content.trim()"
-              size="sm"
-              class="h-[32px]"
-            >
+            <Button type="submit" :disabled="!content.trim()" size="sm" class="h-[32px]">
               {{ t('editor.comment.submit') }}
             </Button>
           </div>
@@ -288,4 +277,3 @@ function onFormSubmit(e: Event) {
   }
 }
 </style>
-

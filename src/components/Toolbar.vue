@@ -57,21 +57,11 @@ const items = computed(() => {
 </script>
 
 <template>
-  <div
-    class="sticky top-0 h-auto bg-background z-10 overflow-visible rounded-t-[0.5rem]"
-    v-if="items.length"
-  >
+  <div class="sticky top-0 h-auto bg-background z-10 overflow-visible rounded-t-[0.5rem]" v-if="items.length">
     <div class="flex flex-nowrap overflow-x-auto sm:flex-wrap gap-y-1 gap-x-1 items-center py-0.5">
-      <template
-        v-for="(item, key) in items"
-        :key="key"
-      >
+      <template v-for="(item, key) in items" :key="key">
         <div class="flex items-center">
-          <Separator
-            v-if="item.spacer"
-            orientation="vertical"
-            class="h-[16px] mx-[10px]"
-          />
+          <Separator v-if="item.spacer" orientation="vertical" class="h-[16px] mx-[10px]" />
         </div>
         <component
           :is="item.button.component"
@@ -79,22 +69,11 @@ const items = computed(() => {
           :editor="editor"
           :disabled="disabled || item.button.componentProps?.disabled"
         >
-          <template
-            v-for="(element, slotName, i) in item.button.componentSlots"
-            :key="i"
-            #[`${slotName}`]="values"
-          >
-            <component
-              :is="element"
-              v-bind="values?.props"
-            />
+          <template v-for="(element, slotName, i) in item.button.componentSlots" :key="i" #[`${slotName}`]="values">
+            <component :is="element" v-bind="values?.props" />
           </template>
         </component>
-        <Separator
-          v-if="item.divider"
-          orientation="vertical"
-          class="h-auto mx-2"
-        />
+        <Separator v-if="item.divider" orientation="vertical" class="h-auto mx-2" />
       </template>
     </div>
   </div>

@@ -57,42 +57,21 @@ function handleClick(e: MouseEvent) {
           @click="handleClick"
         >
           <div v-if="loading">
-            <Icon
-              class="animate-spin"
-              name="LoaderCircle"
-            />
+            <Icon class="animate-spin" name="LoaderCircle" />
           </div>
-          <div
-            class="flex gap-1 items-center"
-            v-else
-          >
-            <Icon
-              v-if="icon"
-              :name="icon"
-            />
+          <div class="flex gap-1 items-center" v-else>
+            <Icon v-if="icon" :name="icon" />
             <slot name="icon"></slot>
           </div>
-          <div
-            class="ml-1 font-normal"
-            v-if="title"
-          >{{ title }}</div>
+          <div class="ml-1 font-normal" v-if="title">{{ title }}</div>
           <slot></slot>
         </Toggle>
       </TooltipTrigger>
-      <TooltipContent
-        v-if="tooltip"
-        v-bind="tooltipOptions"
-      >
+      <TooltipContent v-if="tooltip" v-bind="tooltipOptions">
         <div class="max-w-24 text-center flex flex-col items-center">
           <div>{{ tooltip }}</div>
-          <div
-            v-if="shortcutKeys && shortcutKeys.length"
-            style="display: flex; gap: 4px"
-          >
-            <span
-              v-for="(shortcutKey, index) in shortcutKeys"
-              :key="index"
-            >
+          <div v-if="shortcutKeys && shortcutKeys.length" style="display: flex; gap: 4px">
+            <span v-for="(shortcutKey, index) in shortcutKeys" :key="index">
               {{ getShortcutKey(shortcutKey) }}
             </span>
           </div>

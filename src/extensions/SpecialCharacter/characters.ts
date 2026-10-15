@@ -325,8 +325,6 @@ const arrowCharacters: Character[] = [
   { code: 8207, name: 'right-to-left mark', char: '‏' },
 ]
 
-
-
 // 所有字符分类
 export const characterCategories: CharacterCategory[] = [
   {
@@ -377,9 +375,10 @@ export function searchCharacters(characters: Character[], searchTerm: string): C
   if (!searchTerm) return characters
 
   const term = searchTerm.toLowerCase()
-  return characters.filter(char =>
-    char.name.toLowerCase().includes(term) ||
-    char.char.toLowerCase().includes(term) ||
-    char.char.toLowerCase().replace(/\s+/g, '').includes(term)
+  return characters.filter(
+    char =>
+      char.name.toLowerCase().includes(term) ||
+      char.char.toLowerCase().includes(term) ||
+      char.char.toLowerCase().replace(/\s+/g, '').includes(term)
   )
 }

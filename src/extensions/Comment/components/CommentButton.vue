@@ -60,4 +60,3 @@ function handleOpen() {
 <template>
   <ActionButton :action="handleOpen" :disabled="disabled" :icon="icon" :tooltip="tooltip" />
 </template>
-

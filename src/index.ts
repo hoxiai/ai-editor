@@ -4,7 +4,7 @@ import ActionButton from '@/components/ActionButton.vue'
 import { Extension } from '@tiptap/core'
 import locale, { zhHans, en } from './locales'
 import './styles/index.css'
-import {useTiptapStore} from './hooks/index'
+import { useTiptapStore } from './hooks/index'
 
 const AiEditorPlugin: Plugin = {
   install(app) {
@@ -16,13 +16,7 @@ export * from '@/extensions'
 export { useEditor } from '@tiptap/vue-3'
 export type * from '@/type'
 export { type Editor as EditorInstance, type JSONContent } from '@tiptap/core'
-export type {
-  AiEditorProps,
-  AiEditorEmits,
-  AIEditorProps,
-  AIEditorEmits,
-  AIEditorOnChange,
-} from './type'
+export type { AiEditorProps, AiEditorEmits, AIEditorProps, AIEditorEmits, AIEditorOnChange } from './type'
 export type { Theme } from './constants'
 export { useTheme } from './hooks/useTheme'
 export { default as ThemeToggle } from './components/ThemeToggle.vue'

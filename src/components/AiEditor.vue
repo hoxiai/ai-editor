@@ -66,9 +66,7 @@ const contentRef = ref<HTMLElement | null>(null)
 
 const { setTheme, setBorderRadius } = useTheme()
 
-const sortExtensions = computed<AnyExtension[]>(() =>
-  props.extensions.map((k, i) => k.configure({ sort: i }))
-)
+const sortExtensions = computed<AnyExtension[]>(() => props.extensions.map((k, i) => k.configure({ sort: i })))
 
 const editorConfig = computed<Partial<EditorOptions>>(() => ({
   content: props.modelValue,
@@ -229,48 +227,20 @@ defineExpose({ editor })
 </script>
 
 <template>
-  <div
-    v-if="editor"
-    class="ai-editor"
-    :class="editorClass"
-  >
-    <Preview
-      v-if="hasExtension(editor, 'preview')"
-      :editor="editor"
-    />
-    <SpecialCharacter
-      v-if="hasExtension(editor, 'specialCharacter')"
-      :editor="editor"
-    />
-    <SourceCode
-      v-if="hasExtension(editor, 'sourceCode')"
-      :editor="editor"
-    />
-    <MarkdownMode
-      v-if="hasExtension(editor, 'markdownMode')"
-      :editor="editor"
-    />
-    <Printer
-      v-if="hasExtension(editor, 'printer')"
-      :editor="editor"
-    />
+  <div v-if="editor" class="ai-editor" :class="editorClass">
+    <Preview v-if="hasExtension(editor, 'preview')" :editor="editor" />
+    <SpecialCharacter v-if="hasExtension(editor, 'specialCharacter')" :editor="editor" />
+    <SourceCode v-if="hasExtension(editor, 'sourceCode')" :editor="editor" />
+    <MarkdownMode v-if="hasExtension(editor, 'markdownMode')" :editor="editor" />
+    <Printer v-if="hasExtension(editor, 'printer')" :editor="editor" />
     <div
       class="relative flex flex-col overflow-hidden"
       :class="{
         '!fixed bg-background inset-0 z-[10]  w-full h-full m-0 rounded-[0.5rem]': !customFullscreen && isFullscreen,
       }"
     >
-      <Menubars
-        v-if="!hideMenubar"
-        :editor="editor"
-        :disabled="disabled"
-      />
-      <Toolbar
-        v-if="!hideToolbar"
-        :editor="editor"
-        :disabled="disabled"
-        class="border-b py-1 px-1 overflow-hidden"
-      />
+      <Menubars v-if="!hideMenubar" :editor="editor" :disabled="disabled" />
+      <Toolbar v-if="!hideToolbar" :editor="editor" :disabled="disabled" class="border-b py-1 px-1 overflow-hidden" />
       <div
         class="ai-editor-content-wrap overflow-hidden relative flex flex-col flex-1 min-h-0"
         :class="{
@@ -278,11 +248,7 @@ defineExpose({ editor })
         }"
         :style="contentWrapDynamicStyles"
       >
-        <FindAndReplace
-          v-if="hasExtension(editor, 'findAndReplace')"
-          :container-ref="contentRef"
-          :editor="editor"
-        />
+        <FindAndReplace v-if="hasExtension(editor, 'findAndReplace')" :container-ref="contentRef" :editor="editor" />
         <editor-content
           ref="contentRef"
           :editor="editor"
@@ -291,49 +257,22 @@ defineExpose({ editor })
           :spellcheck="state.spellCheck"
         />
         <template v-if="!hideBubble && !disabled && editor.isEditable">
-          <ContentMenu
-            :editor="editor"
-            class="hidden sm:block"
-          />
-          <LinkBubbleMenu
-            v-if="hasExtension(editor, 'link')"
-            :editor="editor"
-          />
-          <ColumnsBubbleMenu
-            v-if="hasExtension(editor, 'columns')"
-            :editor="editor"
-          />
-          <TableBubbleMenu
-            v-if="hasExtension(editor, 'table')"
-            :editor="editor"
-          />
-          <AIMenu
-            v-if="hasExtension(editor, 'AI')"
-            :editor="editor"
-          />
-          <CommentMenu
-            v-if="hasExtension(editor, 'comment')"
-            :editor="editor"
-          />
-          <ImageBubbleMenu
-            v-if="hasExtension(editor, 'image')"
-            :editor="editor"
-          />
+          <ContentMenu :editor="editor" class="hidden sm:block" />
+          <LinkBubbleMenu v-if="hasExtension(editor, 'link')" :editor="editor" />
+          <ColumnsBubbleMenu v-if="hasExtension(editor, 'columns')" :editor="editor" />
+          <TableBubbleMenu v-if="hasExtension(editor, 'table')" :editor="editor" />
+          <AIMenu v-if="hasExtension(editor, 'AI')" :editor="editor" />
+          <CommentMenu v-if="hasExtension(editor, 'comment')" :editor="editor" />
+          <ImageBubbleMenu v-if="hasExtension(editor, 'image')" :editor="editor" />
           <BasicBubbleMenu :editor="editor" />
         </template>
       </div>
-      <div
-        v-if="hasExtension(editor, 'characterCount')"
-        class="flex justify-between items-center"
-      >
-        <div class="flex justify-end  text-gray-500 text-xs mb-1 ml-3">
+      <div v-if="hasExtension(editor, 'characterCount')" class="flex justify-between items-center">
+        <div class="flex justify-end text-gray-500 text-xs mb-1 ml-3">
           {{ editor.storage.characterCount.characters() }}
           {{ t('editor.characters') }}
         </div>
-        <slot
-          name="footer"
-          :editor="editor"
-        />
+        <slot name="footer" :editor="editor" />
       </div>
     </div>
     <Toaster />

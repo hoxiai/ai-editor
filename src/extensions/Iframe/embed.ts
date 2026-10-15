@@ -1,4 +1,3 @@
- 
 import { icons } from '@/components/icons'
 
 interface ServiceType {
@@ -15,17 +14,17 @@ export const VideoServices: ServiceType[] = [
   {
     label: 'TikTok',
     value: 'tiktok',
-    icon: 'TikTok',  
+    icon: 'TikTok',
   },
   {
     label: 'Vimeo',
     value: 'vimeo',
-    icon: 'Vimeo',  
+    icon: 'Vimeo',
   },
   {
     label: 'Dailymotion',
     value: 'dailymotion',
-    icon: 'Dailymotion', 
+    icon: 'Dailymotion',
   },
 ]
 
@@ -35,14 +34,9 @@ export const MapServices: ServiceType[] = [
   { label: 'OpenStreetMap', value: 'openstreetmap', icon: 'OpenStreetMap' }, // 需有图标
 ]
 
-
 export const OtherServices = []
 
-export const AllEmbedServices = [
-  ...VideoServices,
-  ...MapServices,
-  ...OtherServices,
-]
+export const AllEmbedServices = [...VideoServices, ...MapServices, ...OtherServices]
 
 export const getEmbedService = value => {
   for (var item of AllEmbedServices) {
@@ -54,7 +48,6 @@ export const getEmbedService = value => {
   return {}
 }
 
- 
 export const EmbedServiceLink = {
   youtube: {
     example: 'https://www.youtube.com/watch?v=I4sMhHbHYXM',
@@ -240,7 +233,6 @@ function getAppleMapSrc(originalLink, result) {
   result.originalLink = originalLink
   return result
 }
-
 
 function getCommonSrc(originalLink, result) {
   result.src = `${result.matchedUrl}`

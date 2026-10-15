@@ -70,88 +70,45 @@ const componentSlot = computed(() => {
 </script>
 
 <template>
-  <NodeViewWrapper
-    as="div"
-    data-drag-handle
-  >
-    <Popover
-      :open="isPopoverOpen"
-      :closeOnClickOutside="false"
-    >
+  <NodeViewWrapper as="div" data-drag-handle>
+    <Popover :open="isPopoverOpen" :closeOnClickOutside="false">
       <PopoverTrigger as-child>
-        <div class="flex items-center w-full p-3 my-3 hover:bg-accent border border-border text-muted-foreground cursor-pointer rounded-sm transition-all">
-          <div
-            class="flex justify-center items-center gap-3 text-s"
-            v-if="loading"
-          >
-            <Icon
-              class="animate-spin w-6 h-6"
-              name="LoaderCircle"
-            />
+        <div
+          class="flex items-center w-full p-3 my-3 hover:bg-accent border border-border text-muted-foreground cursor-pointer rounded-sm transition-all"
+        >
+          <div class="flex justify-center items-center gap-3 text-s" v-if="loading">
+            <Icon class="animate-spin w-6 h-6" name="LoaderCircle" />
             <span>{{ t('editor.video.dialog.uploading') }}...</span>
           </div>
-          <div
-            v-else
-            class="flex justify-between items-center w-full"
-          >
+          <div v-else class="flex justify-between items-center w-full">
             <div class="flex justify-center items-center gap-3">
-              <Icon
-                name="Video"
-                class="w-6 h-6"
-              />
+              <Icon name="Video" class="w-6 h-6" />
               <span class="text-sm">{{ t('editor.video.dialog.title') }}</span>
             </div>
-            <Icon
-              name="Trash2"
-              class="hover:text-foreground"
-              @click.stop="handleDelete"
-            />
+            <Icon name="Trash2" class="hover:text-foreground" @click.stop="handleDelete" />
           </div>
         </div>
       </PopoverTrigger>
-      <PopoverContent
-        trapFocus
-        class="w-full"
-        tabindex="0"
-        :onOpenAutoFocus="e => e.preventDefault()"
-      >
+      <PopoverContent trapFocus class="w-full" tabindex="0" :onOpenAutoFocus="e => e.preventDefault()">
         <component
           v-if="componentSlot && componentSlot.component"
           :is="componentSlot.component"
           v-bind="{
-                ...componentSlot.componentProps,
-                editor: componentSlot.componentProps?.editor ?? props.editor
-              }"
+            ...componentSlot.componentProps,
+            editor: componentSlot.componentProps?.editor ?? props.editor,
+          }"
         />
-        <component
-          v-else-if="componentSlot"
-          :is="componentSlot"
-          :editor="props.editor"
-        />
-        <Tabs
-          default-value="upload"
-          class="w-[400px]"
-          activationMode="manual"
-        >
+        <component v-else-if="componentSlot" :is="componentSlot" :editor="props.editor" />
+        <Tabs default-value="upload" class="w-[400px]" activationMode="manual">
           <TabsList class="grid w-full grid-cols-2">
             <TabsTrigger value="upload">{{ t('editor.video.dialog.tab.upload') }} </TabsTrigger>
             <TabsTrigger value="link"> {{ t('editor.video.dialog.link') }} </TabsTrigger>
           </TabsList>
           <TabsContent value="upload">
-            <Button
-              class="w-full mt-1"
-              size="sm"
-              @click="handleClick"
-            >{{
+            <Button class="w-full mt-1" size="sm" @click="handleClick">{{
               t('editor.video.dialog.tab.upload')
             }}</Button>
-            <input
-              type="file"
-              accept="video/*"
-              ref="fileInput"
-              style="display: none"
-              @change="handleFile"
-            />
+            <input type="file" accept="video/*" ref="fileInput" style="display: none" @change="handleFile" />
           </TabsContent>
           <TabsContent value="link">
             <form @submit.prevent="handleLink">

@@ -560,17 +560,13 @@ const isChecked = (checked?: boolean | (() => boolean)) => {
 </script>
 
 <template>
-  <Menubar class="rounded-b-none shadow-none border-t-transparent border-l-transparent border-r-transparent rounded-t-[0.5rem]">
-    <MenubarMenu
-      v-for="(item, index) in loadedMenuItems"
-      :key="index"
-    >
+  <Menubar
+    class="rounded-b-none shadow-none border-t-transparent border-l-transparent border-r-transparent rounded-t-[0.5rem]"
+  >
+    <MenubarMenu v-for="(item, index) in loadedMenuItems" :key="index">
       <MenubarTrigger>{{ t(item.title) }}</MenubarTrigger>
       <MenubarContent>
-        <template
-          v-for="(sub, subIndex) in item.children"
-          :key="subIndex"
-        >
+        <template v-for="(sub, subIndex) in item.children" :key="subIndex">
           <MenubarSeparator v-if="sub?.separator" />
           <MenubarCheckboxItem
             v-else-if="sub.checked && isExtensionLoaded(sub.requiredExtensions)"
@@ -579,22 +575,13 @@ const isChecked = (checked?: boolean | (() => boolean)) => {
             :disabled="isDisabled(sub.disabled)"
             class="flex gap-3"
           >
-            <Icon
-              v-if="sub.icon"
-              :name="sub.icon"
-            />
+            <Icon v-if="sub.icon" :name="sub.icon" />
             {{ t(sub.title!) }}
             <MenubarShortcut v-if="sub.shortcut">{{ getShortcutKeys(sub.shortcut) }}</MenubarShortcut>
           </MenubarCheckboxItem>
           <MenubarSub v-else-if="sub?.key === 'table'">
-            <MenubarSubTrigger
-              class="flex gap-3"
-              :disabled="isDisabled(sub.disabled)"
-            >
-              <Icon
-                v-if="sub.icon"
-                :name="sub.icon"
-              />
+            <MenubarSubTrigger class="flex gap-3" :disabled="isDisabled(sub.disabled)">
+              <Icon v-if="sub.icon" :name="sub.icon" />
               {{ t(sub.title!) }}
             </MenubarSubTrigger>
             <MenubarSubContent>
@@ -607,10 +594,7 @@ const isChecked = (checked?: boolean | (() => boolean)) => {
             :disabled="isDisabled(sub.disabled)"
             class="flex gap-3"
           >
-            <Icon
-              v-if="sub.icon"
-              :name="sub.icon"
-            />
+            <Icon v-if="sub.icon" :name="sub.icon" />
             {{ t(sub.title!) }}
             <MenubarShortcut v-if="sub.shortcut">{{ getShortcutKeys(sub.shortcut) }}</MenubarShortcut>
           </MenubarItem>

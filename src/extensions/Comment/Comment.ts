@@ -6,9 +6,9 @@ import type { GeneralOptions } from '@/type'
 
 // 评论数据接口
 export interface CommentData {
-  commentId: string          // 前端生成的唯一ID
-  selectedText: string       // 选中的文字内容
-  annotationContent: string  // 批注内容
+  commentId: string // 前端生成的唯一ID
+  selectedText: string // 选中的文字内容
+  annotationContent: string // 批注内容
 }
 
 // 评论选项接口
@@ -228,4 +228,3 @@ export const Comment = Mark.create<CommentOptions>({
     ]
   },
 })
-

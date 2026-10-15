@@ -71,11 +71,7 @@ function handleTabChange(value: string | number) {
       </div>
     </div>
     <!-- 标签页 -->
-    <Tabs
-      :model-value="activeTab"
-      @update:model-value="handleTabChange"
-      class="flex-1 flex flex-col"
-    >
+    <Tabs :model-value="activeTab" @update:model-value="handleTabChange" class="flex-1 flex flex-col">
       <TabsList class="grid mb-2 w-full grid-cols-4 lg:grid-cols-8">
         <TabsTrigger
           v-for="category in allCategories"
@@ -87,19 +83,11 @@ function handleTabChange(value: string | number) {
           {{ t(`editor.emoji.categories.${category.name}`) }}
         </TabsTrigger>
       </TabsList>
-      <TabsContent
-        v-for="category in allCategories"
-        :key="category.name"
-        :value="category.name"
-        class="flex-1 mt-0"
-      >
+      <TabsContent v-for="category in allCategories" :key="category.name" :value="category.name" class="flex-1 mt-0">
         <ScrollArea class="h-[260px] pl-1 pr-3">
           <TooltipProvider :delay-duration="0">
             <div class="grid grid-cols-8 md:grid-cols-12 lg:grid-cols-16 gap-2">
-              <Tooltip
-                :key="index"
-                v-for="(char,index) in currentCharacters"
-              >
+              <Tooltip :key="index" v-for="(char, index) in currentCharacters">
                 <TooltipTrigger>
                   <button
                     @click="handleCharacterClick(char)"
@@ -120,10 +108,7 @@ function handleTabChange(value: string | number) {
             class="flex items-center justify-center h-24 text-muted-foreground"
           >
             <div class="text-center">
-              <Icon
-                name="DocSearch"
-                class="w-8 h-8 mx-auto mb-2 opacity-50"
-              />
+              <Icon name="DocSearch" class="w-8 h-8 mx-auto mb-2 opacity-50" />
               <p class="text-sm">{{ t('editor.slash.empty') }}</p>
             </div>
           </div>

@@ -21,7 +21,6 @@ function handleConfirm() {
   // 校验链接合法
   if (result.validLink && result.validId) {
     src.value = result.src
-  } else {
   }
 }
 function handleExmaple() {
@@ -38,33 +37,13 @@ onMounted(() => {
 
 <template>
   <NodeViewWrapper as="section">
-    <div
-      class="flex flex-row relative items-center"
-      v-if="!src"
-    >
-      <Input
-        v-model:model-value="originalLink"
-        type="url"
-        class="h-12 pr-40"
-        autofocus
-        placeholder="输入链接"
-      > </Input>
+    <div class="flex flex-row relative items-center" v-if="!src">
+      <Input v-model:model-value="originalLink" type="url" class="h-12 pr-40" autofocus placeholder="输入链接"> </Input>
       <div class="flex gap-2 absolute right-1 w-36">
-        <Button
-          @click="handleExmaple"
-          variant="outline"
-        >示例</Button>
-        <Button
-          type="primary"
-          @click="handleConfirm"
-        >确认</Button>
+        <Button @click="handleExmaple" variant="outline">示例</Button>
+        <Button type="primary" @click="handleConfirm">确认</Button>
       </div>
     </div>
-    <iframe
-      v-if="src"
-      :src="src"
-      frameborder="0"
-      allowfullscreen="true"
-    ></iframe>
+    <iframe v-if="src" :src="src" frameborder="0" allowfullscreen="true"></iframe>
   </NodeViewWrapper>
 </template>

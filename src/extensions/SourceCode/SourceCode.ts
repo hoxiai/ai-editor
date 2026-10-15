@@ -11,7 +11,7 @@ declare module '@tiptap/core' {
     }
   }
 }
-export interface SourceCodeOptions extends GeneralOptions<SourceCodeOptions> { }
+export interface SourceCodeOptions extends GeneralOptions<SourceCodeOptions> {}
 
 export const SourceCode = Extension.create<SourceCodeOptions>({
   name: 'sourceCode',
@@ -28,7 +28,7 @@ export const SourceCode = Extension.create<SourceCodeOptions>({
               store.toggleSourceCode()
             },
             tooltip: t('editor.sourceCode.tooltip'),
-            isActive: () => store.state.sourceCode
+            isActive: () => store.state.sourceCode,
           },
         }
       },
@@ -38,10 +38,10 @@ export const SourceCode = Extension.create<SourceCodeOptions>({
     return {
       toggleSourceCode:
         () =>
-          ({ editor }) => {
-            useTiptapStore(editor).toggleSourceCode()
-            return true
-          },
+        ({ editor }) => {
+          useTiptapStore(editor).toggleSourceCode()
+          return true
+        },
     }
   },
 })

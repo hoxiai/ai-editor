@@ -69,20 +69,15 @@ const items = computed(() => {
     :editor="editor"
     :tippy-options="tippyOptions"
     class="ai-editor"
-    style="box-shadow:none; outline-style:none;"
+    style="box-shadow: none; outline-style: none"
   >
-    <div class="border px-3 py-2 transition-all select-none pointer-events-auto shadow-sm rounded-sm bg-background w-auto max-w-[calc(-68px_+_100vw)] overflow-x-auto">
+    <div
+      class="border px-3 py-2 transition-all select-none pointer-events-auto shadow-sm rounded-sm bg-background w-auto max-w-[calc(-68px_+_100vw)] overflow-x-auto"
+    >
       <div class="flex items-center flex-nowrap whitespace-nowrap h-[26px] justify-start relative gap-0.5">
-        <template
-          v-for="(item, key) in items"
-          :key="key"
-        >
+        <template v-for="(item, key) in items" :key="key">
           <!-- Divider -->
-          <Separator
-            v-if="item.type === 'divider'"
-            orientation="vertical"
-            class="mx-1 me-1 h-[16px]"
-          />
+          <Separator v-if="item.type === 'divider'" orientation="vertical" class="mx-1 me-1 h-[16px]" />
           <component
             :is="item.component"
             v-else
@@ -90,15 +85,8 @@ const items = computed(() => {
             :editor="editor"
             :disabled="disabled || item.componentProps?.disabled"
           >
-            <template
-              v-for="(element, slotName) in item.componentSlots"
-              :key="slotName"
-              #[`${slotName}`]="values"
-            >
-              <component
-                :is="element"
-                v-bind="values?.props"
-              />
+            <template v-for="(element, slotName) in item.componentSlots" :key="slotName" #[`${slotName}`]="values">
+              <component :is="element" v-bind="values?.props" />
             </template>
           </component>
         </template>

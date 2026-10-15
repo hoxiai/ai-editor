@@ -56,14 +56,8 @@ const updateLink = $event => {
 </script>
 
 <template>
-  <div
-    ref="target"
-    class="p-2 rounded-lg bg-card shadow-sm border"
-  >
-    <form
-      @submit.prevent="handleSubmit"
-      class="flex flex-col gap-2"
-    >
+  <div ref="target" class="p-2 rounded-lg bg-card shadow-sm border">
+    <form @submit.prevent="handleSubmit" class="flex flex-col gap-2">
       <Label> {{ t('editor.link.dialog.text') }} </Label>
       <div class="flex w-full max-w-sm items-center gap-1.5">
         <div class="relative w-full max-w-sm items-center">
@@ -85,7 +79,7 @@ const updateLink = $event => {
           ...componentSlot.componentProps,
           link: form.link,
           text: form.text,
-          editor: componentSlot.componentProps?.editor ?? props.editor
+          editor: componentSlot.componentProps?.editor ?? props.editor,
         }"
         @update:link="updateLink"
         @update:text="form.text = $event"
@@ -103,35 +97,17 @@ const updateLink = $event => {
       <Label>{{ t('editor.link.dialog.link') }}</Label>
       <div class="flex w-full max-w-sm items-center gap-1.5">
         <div class="relative w-full max-w-sm items-center">
-          <Input
-            :type="isStrictUrl ? 'url' : 'text'"
-            ref="inputRef"
-            v-model="form.link"
-            required
-            class="pl-10"
-          />
+          <Input :type="isStrictUrl ? 'url' : 'text'" ref="inputRef" v-model="form.link" required class="pl-10" />
           <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
-            <Icon
-              class="size-5 text-muted-foreground"
-              name="Link"
-            />
+            <Icon class="size-5 text-muted-foreground" name="Link" />
           </span>
         </div>
       </div>
-      <div
-        class="flex items-center space-x-2 mt-1"
-        v-if="!hideTarget"
-      >
-        <Checkbox
-          v-model="openInNewTab"
-          id="openInNewTab"
-        />
+      <div class="flex items-center space-x-2 mt-1" v-if="!hideTarget">
+        <Checkbox v-model="openInNewTab" id="openInNewTab" />
         <Label for="openInNewTab">{{ t('editor.link.dialog.openInNewTab') }}</Label>
       </div>
-      <Button
-        type="submit"
-        class="mt-2 self-end"
-      >{{ t('editor.link.dialog.button.apply') }} </Button>
+      <Button type="submit" class="mt-2 self-end">{{ t('editor.link.dialog.button.apply') }} </Button>
     </form>
   </div>
 </template>

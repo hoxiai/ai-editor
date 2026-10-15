@@ -293,7 +293,7 @@ const inputPaddingClass = computed(() => (selectedLabel.value ? 'pl-24' : 'pl-10
   <div
     class="absolute left-0 right-0 top-0 bottom-0"
     :style="{
-      zIndex: status === 'init' && prompt === '' || status === 'completed' ? -1 : 98,
+      zIndex: (status === 'init' && prompt === '') || status === 'completed' ? -1 : 98,
     }"
     v-show="shouldShow"
     @click="handleOverlayClick"
@@ -304,23 +304,15 @@ const inputPaddingClass = computed(() => (selectedLabel.value ? 'pl-24' : 'pl-10
       v-show="shouldShow"
       :editor="editor"
       class="ai-editor"
-      style="box-shadow:none; outline-style:none;"
+      style="box-shadow: none; outline-style: none"
       :tippy-options="tippyOptions"
     >
-      <div
-        @keydown="handleKey"
-        class="relative w-[450px] z-[99]"
-        :class="{ 'shake-animation': isShaking }"
-      >
+      <div @keydown="handleKey" class="relative w-[450px] z-[99]" :class="{ 'shake-animation': isShaking }">
         <div
           class="border rounded-sm shadow-sm bg-background"
           v-show="(status === 'generating' || status === 'completed') && result"
         >
-          <div
-            ref="resultContainer"
-            class="p-4 line-height-none block overflow-y-auto"
-            style="max-height: 210px"
-          >
+          <div ref="resultContainer" class="p-4 line-height-none block overflow-y-auto" style="max-height: 210px">
             <div
               class="text-sm text-foreground FtContentView"
               :style="{
@@ -342,14 +334,11 @@ const inputPaddingClass = computed(() => (selectedLabel.value ? 'pl-24' : 'pl-10
             <Icon
               name="LoaderCircle"
               class="animate-spin w-4 h-4 mr-2 text-primary"
-              style="vertical-align: middle; color: var(--ai-primary-color);"
+              style="vertical-align: middle; color: var(--ai-primary-color)"
             />
             {{ t('editor.AI.generating') }}
           </div>
-          <div
-            v-else
-            class="relative w-full"
-          >
+          <div v-else class="relative w-full">
             <!-- 输入框 -->
             <Input
               v-model="prompt"
@@ -359,26 +348,20 @@ const inputPaddingClass = computed(() => (selectedLabel.value ? 'pl-24' : 'pl-10
               :style="{ paddingLeft: selectedLabel ? '7.5rem' : '2.5rem' }"
             />
             <!-- 左侧图标 -->
-            <span
-              class="absolute left-2 top-1/2 -translate-y-1/2 flex items-center justify-center"
-              style="z-index:2;"
-            >
-              <Icon
-                name="Sparkles"
-                class="w-5 h-5"
-              />
+            <span class="absolute left-2 top-1/2 -translate-y-1/2 flex items-center justify-center" style="z-index: 2">
+              <Icon name="Sparkles" class="w-5 h-5" />
             </span>
             <!-- 选择的标签 -->
             <span
               v-if="selectedLabel"
               class="absolute left-10 top-1/2 -translate-y-1/2 text-xs text-muted-foreground bg-accent px-2 py-0.5 rounded flex items-center"
-              style="white-space:nowrap; z-index:2;"
+              style="white-space: nowrap; z-index: 2"
             >
               {{ selectedLabel }}
               <Icon
                 name="Close"
                 class="ml-1 w-3 h-3 cursor-pointer hover:text-red-500"
-                @click.stop="selectedLabel = '', store.state.AIMenuShortcut = true"
+                @click.stop="((selectedLabel = ''), (store.state.AIMenuShortcut = true))"
               />
             </span>
           </div>
@@ -396,21 +379,14 @@ const inputPaddingClass = computed(() => (selectedLabel.value ? 'pl-24' : 'pl-10
             @click="handleGenerate"
             class="absolute end-0 inset-y-0 flex items-center justify-center px-2 w-[32px] h-[32px] m-2 rounded-full"
           >
-            <Icon
-              name="ArrowUp"
-              class="w-5 h-5 font-bold"
-            />
+            <Icon name="ArrowUp" class="w-5 h-5 font-bold" />
           </Button>
         </form>
         <div
           class="mt-3 max-w-56"
           v-show="status === 'init' && shortcutMenus.length && !prompt && store.state.AIMenuShortcut"
         >
-          <Menu
-            ref="menuRef"
-            :items="shortcutMenus"
-            @item-click="shortcutClick"
-          />
+          <Menu ref="menuRef" :items="shortcutMenus" @item-click="shortcutClick" />
         </div>
         <AiCompletion
           @close="handleClose"

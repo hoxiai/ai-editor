@@ -15,24 +15,14 @@
       @mouseenter="handleMouseEnter(index)"
       @click="handleClick(item)"
     >
-      <Icon
-        v-if="item.icon"
-        :name="item.icon as any"
-        class="mr-2 h-4 w-4"
-      />
+      <Icon v-if="item.icon" :name="item.icon as any" class="mr-2 h-4 w-4" />
       <span>{{ item.label }}</span>
-      <Icon
-        v-if="item.children && item.isSelected"
-        name="ChevronRight"
-        class="ml-auto h-4 w-4"
-      />
+      <Icon v-if="item.children && item.isSelected" name="ChevronRight" class="ml-auto h-4 w-4" />
       <div
         v-if="item.children && item.isSelected"
         :class="[
           'absolute left-full bg-background shadow-md rounded-sm border border-sm',
-          item.children.length === 1 && item.children[0].type === 'component'
-            ? 'top-1/2 -translate-y-1/2'
-            : 'top-0'
+          item.children.length === 1 && item.children[0].type === 'component' ? 'top-1/2 -translate-y-1/2' : 'top-0',
         ]"
       >
         <div class="p-1 flex flex-col gap-1 min-w-32">
@@ -47,18 +37,10 @@
             @mouseenter="handleSubItemMouseEnter(index, subIndex)"
           >
             <template v-if="subItem.type === 'component'">
-              <component
-                :is="subItem.component"
-                v-bind="subItem.componentProps"
-                @click="emitInput(subItem)"
-              />
+              <component :is="subItem.component" v-bind="subItem.componentProps" @click="emitInput(subItem)" />
             </template>
             <template v-else>
-              <Icon
-                v-if="subItem.icon"
-                :name="subItem.icon as any"
-                class="mr-2 h-4 w-4"
-              />
+              <Icon v-if="subItem.icon" :name="subItem.icon as any" class="mr-2 h-4 w-4" />
               <span @click="handleClick(subItem)">{{ subItem.label }}</span>
             </template>
           </div>
@@ -176,7 +158,7 @@ const handleKeyDown = (e: KeyboardEvent) => {
       }
       break
 
-    case 'Enter':
+    case 'Enter': {
       e.preventDefault()
       const currentItem = isInSubMenu
         ? menuItems[currentSelectedIndex.value].children?.[currentSubMenuIndex.value]
@@ -185,6 +167,7 @@ const handleKeyDown = (e: KeyboardEvent) => {
         handleClick(currentItem)
       }
       break
+    }
   }
 }
 

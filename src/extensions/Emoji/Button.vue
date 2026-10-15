@@ -26,10 +26,7 @@ function handleOpenChange(v: boolean) {
 </script>
 
 <template>
-  <Popover
-    :open="open"
-    @update:open="handleOpenChange"
-  >
+  <Popover :open="open" @update:open="handleOpenChange">
     <PopoverTrigger>
       <Button
         size="icon"

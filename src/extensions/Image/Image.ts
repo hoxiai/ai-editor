@@ -121,19 +121,9 @@ export const Image = TiptapImage.extend({
     )
 
     if (href) {
-      return [
-        'a',
-        { href, target: '_blank', rel: 'noopener noreferrer' },
-        [
-          'img',
-          imgAttrs
-        ]
-      ] as const
+      return ['a', { href, target: '_blank', rel: 'noopener noreferrer' }, ['img', imgAttrs]] as const
     }
-    return [
-      'img',
-      imgAttrs
-    ] as const
+    return ['img', imgAttrs] as const
   },
 
   parseHTML() {

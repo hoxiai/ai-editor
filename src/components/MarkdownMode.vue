@@ -62,11 +62,9 @@ async function saveEdit() {
 function copyCode() {
   if (!markdownCode.value) return
 
-  navigator.clipboard
-    .writeText(markdownCode.value)
-    .catch(err => {
-      console.error('复制失败:', err)
-    })
+  navigator.clipboard.writeText(markdownCode.value).catch(err => {
+    console.error('复制失败:', err)
+  })
 }
 
 function destroyEditor() {
@@ -94,7 +92,7 @@ function init() {
     cursorPosition(),
     defaultCommands(),
     editHistory(),
-    searchWidget(),
+    searchWidget()
   )
 }
 
@@ -119,10 +117,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <Dialog
-    :open="store.state.markdownMode"
-    @update:open="open => (store.state.markdownMode = open)"
-  >
+  <Dialog :open="store.state.markdownMode" @update:open="open => (store.state.markdownMode = open)">
     <DialogContent
       @close-auto-focus="e => e.preventDefault()"
       class="sm:max-w-[600px] md:max-w-[800px] lg:max-w-[1000px] grid-rows-[auto_minmax(0,1fr)_auto] p-0 max-h-[90dvh] h-full"
@@ -131,41 +126,20 @@ onBeforeUnmount(() => {
         <DialogTitle>{{ t('editor.markdownMode.title') }}</DialogTitle>
       </DialogHeader>
 
-      <div
-        ref="containerRef"
-        class="flex border mx-1"
-        :class="`${isDark ? 'atom-one-dark' : 'vs-code-light'}`"
-      />
+      <div ref="containerRef" class="flex border mx-1" :class="`${isDark ? 'atom-one-dark' : 'vs-code-light'}`" />
       <DialogFooter class="p-6 flex-shrink-0 pt-0 sm:justify-between">
         <div class="flex items-center gap-3">
-          <Button
-            variant="outline"
-            size="sm"
-            @click="copyCode"
-          >
-            <Icon
-              name="Copy"
-              class="w-4 h-4 mr-1"
-            />
+          <Button variant="outline" size="sm" @click="copyCode">
+            <Icon name="Copy" class="w-4 h-4 mr-1" />
             {{ t('editor.copy') }}
           </Button>
         </div>
         <div class="flex items-center gap-3">
-          <Button
-            size="sm"
-            @click="handleClose"
-            variant="outline"
-          >
+          <Button size="sm" @click="handleClose" variant="outline">
             {{ t('editor.close') }}
           </Button>
-          <Button
-            size="sm"
-            @click="saveEdit"
-          >
-            <Icon
-              name="Check"
-              class="w-4 h-4 mr-1"
-            />
+          <Button size="sm" @click="saveEdit">
+            <Icon name="Check" class="w-4 h-4 mr-1" />
             {{ t('editor.save') }}
           </Button>
         </div>

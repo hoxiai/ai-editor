@@ -11,7 +11,7 @@ declare module '@tiptap/core' {
   }
 }
 
-export interface MarkdownModeOptions extends GeneralOptions<MarkdownModeOptions> { }
+export interface MarkdownModeOptions extends GeneralOptions<MarkdownModeOptions> {}
 
 export const MarkdownMode = Extension.create<MarkdownModeOptions>({
   name: 'markdownMode',
@@ -38,10 +38,10 @@ export const MarkdownMode = Extension.create<MarkdownModeOptions>({
     return {
       toggleMarkdownMode:
         () =>
-          ({ editor }) => {
-            useTiptapStore(editor).toggleMarkdownMode()
-            return true
-          },
+        ({ editor }) => {
+          useTiptapStore(editor).toggleMarkdownMode()
+          return true
+        },
     }
   },
 })

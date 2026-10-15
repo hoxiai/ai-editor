@@ -119,7 +119,7 @@ export const Video = Node.create<VideoOptions>({
   },
 
   renderHTML({ HTMLAttributes }) {
-    const { width = '100%', src  } = HTMLAttributes ?? {}
+    const { width = '100%', src } = HTMLAttributes ?? {}
     const videoExt = /\.(mp4|webm|ogg)(\?.*)?$/i
 
     const divAttrs = {

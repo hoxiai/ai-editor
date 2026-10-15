@@ -26,12 +26,7 @@ function onEdit() {
 
 <template>
   <div class="flex items-center gap-2 p-2 pl-4 bg-card rounded-lg shadow-sm border">
-    <a
-      :href="link"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="text-sm underline break-all"
-    >
+    <a :href="link" target="_blank" rel="noopener noreferrer" class="text-sm underline break-all">
       {{
         truncate(link, {
           length: 50,
@@ -39,11 +34,7 @@ function onEdit() {
         })
       }}
     </a>
-    <Separator
-      orientation="vertical"
-      class="h-4"
-      v-if="link"
-    />
+    <Separator orientation="vertical" class="h-4" v-if="link" />
     <div class="flex flex-nowrap">
       <ActionButton
         icon="Pencil"

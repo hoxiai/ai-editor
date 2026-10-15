@@ -10,14 +10,14 @@ declare module '@tiptap/core' {
     }
   }
 }
-export interface SpecialCharacterOptions extends GeneralOptions<SpecialCharacterOptions> { }
+export interface SpecialCharacterOptions extends GeneralOptions<SpecialCharacterOptions> {}
 
 export const SpecialCharacter = Extension.create<SpecialCharacterOptions>({
   name: 'specialCharacter',
   addOptions() {
     return {
       ...this.parent?.(),
-      button: ({ editor,t }) => ({
+      button: ({ editor, t }) => ({
         component: Button,
         componentProps: {
           icon: 'Omega',
@@ -25,7 +25,7 @@ export const SpecialCharacter = Extension.create<SpecialCharacterOptions>({
             editor.chain().toggleSpecialCharacter().focus().run()
           },
           tooltip: t('editor.specialCharacter.tooltip'),
-          isActive: () => !!editor.storage.specialCharacterOpen
+          isActive: () => !!editor.storage.specialCharacterOpen,
         },
       }),
     }
@@ -34,22 +34,22 @@ export const SpecialCharacter = Extension.create<SpecialCharacterOptions>({
     return {
       toggleSpecialCharacter:
         () =>
-          ({ editor }) => {
-            editor.storage.specialCharacterOpen = !editor.storage.specialCharacterOpen
-            return true
-          },
+        ({ editor }) => {
+          editor.storage.specialCharacterOpen = !editor.storage.specialCharacterOpen
+          return true
+        },
       insertSpecialCharacter:
         (char: string) =>
-          ({ editor }) => {
-            try {
-              // 直接使用insertContent，这是最安全的方法
-              editor.commands.insertContent(char)
-              return true
-            } catch (error) {
-              console.error('Error in insertSpecialCharacter command:', error)
-              return false
-            }
-          },
+        ({ editor }) => {
+          try {
+            // 直接使用insertContent，这是最安全的方法
+            editor.commands.insertContent(char)
+            return true
+          } catch (error) {
+            console.error('Error in insertSpecialCharacter command:', error)
+            return false
+          }
+        },
     }
   },
 })

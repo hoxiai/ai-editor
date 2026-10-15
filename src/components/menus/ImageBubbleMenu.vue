@@ -155,35 +155,20 @@ watch(
       sticky: 'popper',
     }"
   >
-    <div class="border px-3 py-2 transition-all select-none pointer-events-auto shadow-sm rounded-sm w-auto bg-background  min-w-[370px] ">
+    <div
+      class="border px-3 py-2 transition-all select-none pointer-events-auto shadow-sm rounded-sm w-auto bg-background min-w-[370px]"
+    >
       <div class="flex items-center flex-nowrap whitespace-nowrap h-[26px] justify-start relative gap-0.5">
-        <ActionButton
-          :tooltip="t('editor.image.menu.flipX')"
-          icon="FlipVertical"
-          :action="handleFlipX"
-        />
-        <ActionButton
-          :tooltip="t('editor.image.menu.flipY')"
-          icon="FlipHorizontal"
-          :action="handleFlipY"
-        />
-        <Separator
-          orientation="vertical"
-          class="mx-1 me-2 h-[16px]"
-        />
+        <ActionButton :tooltip="t('editor.image.menu.flipX')" icon="FlipVertical" :action="handleFlipX" />
+        <ActionButton :tooltip="t('editor.image.menu.flipY')" icon="FlipHorizontal" :action="handleFlipY" />
+        <Separator orientation="vertical" class="mx-1 me-2 h-[16px]" />
         <Popover>
           <PopoverTrigger>
-            <ActionButton
-              :title="t('editor.image.menu.size')"
-              icon="ImageSize"
-            />
+            <ActionButton :title="t('editor.image.menu.size')" icon="ImageSize" />
           </PopoverTrigger>
           <PopoverContent class="w-84">
             <div class="flex items-center gap-2">
-              <Label
-                for="maxWidth"
-                class="whitespace-nowrap"
-              >{{ t('editor.image.menu.size.width') }}</Label>
+              <Label for="maxWidth" class="whitespace-nowrap">{{ t('editor.image.menu.size.width') }}</Label>
               <Input
                 id="maxWidth"
                 v-model="width"
@@ -192,10 +177,7 @@ watch(
                 @keyup.enter="updateImageSize"
                 class="w-20 h-8 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
-              <Label
-                for="maxWidth"
-                class="whitespace-nowrap"
-              >{{ t('editor.image.menu.size.height') }}</Label>
+              <Label for="maxWidth" class="whitespace-nowrap">{{ t('editor.image.menu.size.height') }}</Label>
               <Input
                 id="maxWidth"
                 v-model="height"
@@ -215,11 +197,7 @@ watch(
                 "
               >
                 <TabsList>
-                  <TabsTrigger
-                    v-for="value in ['25', '50', '75', '100']"
-                    :key="value"
-                    :value="value"
-                  >
+                  <TabsTrigger v-for="value in ['25', '50', '75', '100']" :key="value" :value="value">
                     {{ value }}%
                   </TabsTrigger>
                 </TabsList>
@@ -227,10 +205,7 @@ watch(
             </div>
           </PopoverContent>
         </Popover>
-        <Separator
-          orientation="vertical"
-          class="mx-1 me-2 h-[16px]"
-        />
+        <Separator orientation="vertical" class="mx-1 me-2 h-[16px]" />
         <ActionButton
           v-for="(item, index) in imageAlign"
           :key="index"
@@ -240,10 +215,7 @@ watch(
           :disabled="!editor.can().setTextAlign(item)"
           :is-active="() => editor.isActive({ textAlign: item }) || false"
         />
-        <Separator
-          orientation="vertical"
-          class="mx-1 me-2 h-[16px]"
-        />
+        <Separator orientation="vertical" class="mx-1 me-2 h-[16px]" />
         <LinkEditPopover
           :editor="editor"
           :icon="'Link'"
@@ -252,9 +224,11 @@ watch(
           :link="imageLink"
           :text="imageAlt"
           :hideTarget="true"
-          :action="(data) => {
-            editor.chain().focus().updateImage({ href: data.link, alt: data.text }).run()
-          }"
+          :action="
+            data => {
+              editor.chain().focus().updateImage({ href: data.link, alt: data.text }).run()
+            }
+          "
         />
         <ActionButton
           :tooltip="t('editor.remove')"

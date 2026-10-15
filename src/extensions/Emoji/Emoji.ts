@@ -10,14 +10,14 @@ declare module '@tiptap/core' {
     }
   }
 }
-export interface EmojiOptions extends GeneralOptions<EmojiOptions> { }
+export interface EmojiOptions extends GeneralOptions<EmojiOptions> {}
 
 export const Emoji = Extension.create<EmojiOptions>({
   name: 'emoji',
   addOptions() {
     return {
       ...this.parent?.(),
-      button: ({editor, t }) => ({
+      button: ({ editor, t }) => ({
         component: Button,
         componentProps: {
           icon: 'Smile',
@@ -25,7 +25,7 @@ export const Emoji = Extension.create<EmojiOptions>({
             editor.chain().toggleEmoji().focus().run()
           },
           tooltip: t('editor.emoji.tooltip'),
-          isActive: () => !!editor.storage.emojiOpen
+          isActive: () => !!editor.storage.emojiOpen,
         },
       }),
     }
@@ -34,22 +34,22 @@ export const Emoji = Extension.create<EmojiOptions>({
     return {
       toggleEmoji:
         () =>
-          ({ editor }) => {
-            editor.storage.emojiOpen = !editor.storage.emojiOpen
-            return true
-          },
+        ({ editor }) => {
+          editor.storage.emojiOpen = !editor.storage.emojiOpen
+          return true
+        },
       insertEmoji:
         (char: string) =>
-          ({ editor }) => {
-            try {
-              // 直接使用insertContent，这是最安全的方法
-              editor.commands.insertContent(char)
-              return true
-            } catch (error) {
-              console.error('Error in insertEmoji command:', error)
-              return false
-            }
-          },
+        ({ editor }) => {
+          try {
+            // 直接使用insertContent，这是最安全的方法
+            editor.commands.insertContent(char)
+            return true
+          } catch (error) {
+            console.error('Error in insertEmoji command:', error)
+            return false
+          }
+        },
     }
   },
 })

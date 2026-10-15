@@ -95,7 +95,7 @@ import {
   Omega,
   CodeXml,
   AppWindow,
-  Smile
+  Smile,
 } from 'lucide-vue-next'
 
 import { ExtraIcons } from './ExtraIcons'

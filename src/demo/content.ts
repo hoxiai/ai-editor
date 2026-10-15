@@ -235,7 +235,10 @@ export const DEMO_CONTENT = {
       type: 'codeBlock',
       attrs: { language: 'bash' },
       content: [
-        { type: 'text', text: 'pnpm add @hoxiai/ai-editor\n// or\nor yarn add @hoxiai/ai-editor\n// or\nor npm i @hoxiai/ai-editor -S' },
+        {
+          type: 'text',
+          text: 'pnpm add @hoxiai/ai-editor\n// or\nor yarn add @hoxiai/ai-editor\n// or\nor npm i @hoxiai/ai-editor -S',
+        },
       ],
     },
     {
@@ -245,7 +248,7 @@ export const DEMO_CONTENT = {
     },
     {
       type: 'codeBlock',
-      attrs: { language: "typescript", },
+      attrs: { language: 'typescript' },
       content: [
         {
           type: 'text',
