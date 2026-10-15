@@ -48,7 +48,7 @@ export default defineConfig({
     cssNamespacePlugin(),
     visualizer({
       filename: './stats.html',
-      open: true,
+      open: false,
     }),
   ],
   optimizeDeps: {

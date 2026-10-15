@@ -29,7 +29,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "**/*.ts",
+    "vite.config.ts",
     "src/plugins/drag.ts"
   ],
   "exclude": ["node_modules", "dist", "src/examples"]
