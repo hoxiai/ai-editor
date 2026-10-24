@@ -47,6 +47,7 @@ const pluginRef = ref<PluginRefType | null>(null)
 const currentNode = ref<Node | null>(null)
 const currentNodePos = ref<number>(-1)
 const menuOpen = ref(false)
+let keepEditorFocus = false
 
 onMounted(() => {
   if (dragElement.value && !props.editor.isDestroyed) {
@@ -56,7 +57,7 @@ onMounted(() => {
       element: dragElement.value,
       pluginKey: props.pluginKey,
       tippyOptions: {
-        offset: [-2, 16],
+        offset: [-2, 8],
         zIndex: 9,
         moveTransition: 'transform 0.15s ease-out',
       },
@@ -124,6 +125,7 @@ function handleAdd() {
     return
   }
   if (currentNodePos.value !== -1) {
+    keepEditorFocus = true
     const currentNodeSize = currentNode.value?.nodeSize || 0
     const insertPos = currentNodePos.value + currentNodeSize
     const currentNodeIsEmptyParagraph =
@@ -134,7 +136,7 @@ function handleAdd() {
       .command(({ dispatch, tr, state }) => {
         if (dispatch) {
           if (currentNodeIsEmptyParagraph) {
-            tr.insertText('/', currentNodePos.value, currentNodePos.value + 1)
+            tr.insertText('/', currentNodePos.value + 1)
           } else {
             tr.insert(insertPos, state.schema.nodes.paragraph.create(null, [state.schema.text('/')]))
           }
@@ -146,6 +148,12 @@ function handleAdd() {
       })
       .focus(focusPos)
       .run()
+  }
+}
+function handleCloseAutoFocus(event: Event) {
+  if (keepEditorFocus) {
+    event.preventDefault()
+    keepEditorFocus = false
   }
 }
 watch(
@@ -183,32 +191,33 @@ watch(
       class="flex items-center gap-0.5"
       style="transition-property: top, left; transition-timing-function: ease-in-out; transition-duration: 0.2s"
     >
-      <Button
-        v-if="hasExtension(editor, 'slashCommand')"
-        variant="ghost"
-        @click="handleAdd"
-        size="icon"
-        class="w-7 h-7 cursor-grab rounded-sm"
-        :disabled="disabled"
-      >
-        <Icon name="Plus" class="text-lg" />
-      </Button>
       <DropdownMenu v-model:open="menuOpen">
-        <DropdownMenuTrigger :disable="disabled">
-          <TooltipProvider :delay-duration="0">
-            <Tooltip>
-              <TooltipTrigger as-child>
-                <Button variant="ghost" size="icon" class="w-6 h-7 cursor-grab rounded-sm" :disabled="disabled">
+        <TooltipProvider :delay-duration="0">
+          <Tooltip>
+            <TooltipTrigger as-child>
+              <DropdownMenuTrigger as-child :disabled="disabled">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  class="w-6 h-7 cursor-grab rounded-sm"
+                  :aria-label="t('editor.draghandle.tooltip')"
+                  :disabled="disabled"
+                >
                   <Icon name="Grip" class="text-sm" />
                 </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>{{ t('editor.draghandle.tooltip') }}</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent class="w-48" align="start" side="bottom">
+              </DropdownMenuTrigger>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{{ t('editor.draghandle.tooltip') }}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+        <DropdownMenuContent class="w-48" align="start" side="bottom" @close-auto-focus="handleCloseAutoFocus">
+          <DropdownMenuItem v-if="hasExtension(editor, 'slashCommand')" class="flex gap-3" @select="handleAdd">
+            <Icon name="Plus" />
+            <span>{{ t('editor.slash.insert') }}</span>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator v-if="hasExtension(editor, 'slashCommand')" />
           <DropdownMenuItem
             @click="deleteNode"
             class="flex gap-3 focus:text-red-500 focus:bg-red-400 hover:bg-red-400 dark:hover:text-red-500 bg-opacity-10 hover:bg-opacity-20 focus:bg-opacity-30 dark:hover:bg-opacity-20"

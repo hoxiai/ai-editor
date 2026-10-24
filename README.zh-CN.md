@@ -159,6 +159,10 @@ const extensions = [
 | contentClass         | `string \| string[] \| Record<string, any>` | -        | 内容 class                |
 | customFullscreen     | `boolean`                                   | `false`  | 自定义全屏行为            |
 
+### 段落操作
+
+悬停段落时，正文左侧显示单个拖动手柄：拖拽移动段落，点击打开插入、复制、删除等菜单。插入入口依赖 `SlashCommand` 扩展，也可直接输入 `/`。宿主自定义正文内边距时，应为 24px 手柄和 8px 间距预留固定左侧空间（建议至少 40px），避免内部滚动区裁切手柄或遮挡文字。
+
 ### Emits
 
 | 事件              | 参数                    | 说明         |
